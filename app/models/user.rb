@@ -17,7 +17,7 @@ class User < ApplicationRecord
   def password_complexity
     return if password.blank?
 
-    unless password.match(/\A(?=.*[0-9])(?=.*[a-zA-Z])/)
+    unless password.match(/\A(?=.*[a-z])(?=.*\d)[a-z\d]{6,}\z/)
       errors.add(:password, 'is invalid. Include both letters and numbers')
     end
   end
