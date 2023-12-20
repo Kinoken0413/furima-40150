@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   def index
-      @items = Item.all
+    @items = Item.all
   end
 
   def new
@@ -18,6 +18,7 @@ class ItemsController < ApplicationController
   end
 
   private
+  
   def item_params
     params.require(:item).permit(
       :image,
