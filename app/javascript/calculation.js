@@ -10,8 +10,8 @@ function calculation (){
       addTaxPrice.textContent = "0";
       profit.textContent = "0";
     } else {
-      const taxPriceValue = Math.max(Math.round(itemPriceValue * 0.1), 0);
-      const profitValue = Math.max(Math.round(itemPriceValue * 0.9), 0);
+      const taxPriceValue = Math.max(Math.floor(itemPriceValue * 0.1), 0);
+      const profitValue = Math.max(Math.floor(itemPriceValue * 0.9), 0);
 
       addTaxPrice.textContent = taxPriceValue.toLocaleString();
       profit.textContent = profitValue.toLocaleString();
