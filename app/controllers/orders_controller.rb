@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
+  before_action :check_soldout_status, only: [:index]
   before_action :check_owner, only: [:index, :create]
 
   def index
@@ -26,6 +27,12 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
+  def check_soldout_status
+    if Order.exists?(item_id: @item.id)
+      redirect_to root_path
+    end
+  end
+  
   def check_owner
     if @item.user == current_user
       redirect_to root_path
