@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :check_owner, only: [:edit, :update, :destroy]
+  before_action :check_soldout_status, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -69,4 +70,9 @@ class ItemsController < ApplicationController
     end
   end
 
+  def check_soldout_status
+    if Order.exists?(item_id: @item.id)
+      redirect_to root_path
+    end
+  end
 end
