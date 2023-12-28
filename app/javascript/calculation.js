@@ -11,7 +11,7 @@ function calculation (){
       profit.textContent = "0";
     } else {
       const taxPriceValue = Math.max(Math.floor(itemPriceValue * 0.1), 0);
-      const profitValue = Math.max(Math.floor(itemPriceValue * 0.9), 0);
+      const profitValue = itemPriceValue - taxPriceValue;
 
       addTaxPrice.textContent = taxPriceValue.toLocaleString();
       profit.textContent = profitValue.toLocaleString();
@@ -20,3 +20,4 @@ function calculation (){
 };
 
 window.addEventListener('turbo:load', calculation);
+window.addEventListener('turbo:render', calculation);
